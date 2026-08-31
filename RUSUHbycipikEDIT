@@ -1,0 +1,416 @@
+-- Gui to Lua (Modernized Version)
+-- Instances:
+
+local Gui = Instance.new("ScreenGui")
+local Main = Instance.new("Frame")
+local UICorner_Main = Instance.new("UICorner")
+local Label = Instance.new("TextLabel")
+local MinimizeButton = Instance.new("TextButton")
+local Button = Instance.new("TextButton")
+local UICorner_Btn = Instance.new("UICorner")
+
+-- TextBox untuk ketik manual
+local Box = Instance.new("TextBox")
+local UICorner_Box = Instance.new("UICorner")
+
+-- Tombol Toggle List Player
+local ToggleListBtn = Instance.new("TextButton")
+local UICorner_Toggle = Instance.new("UICorner")
+
+-- Player List Container
+local PlayerListFrame = Instance.new("ScrollingFrame")
+local UIListLayout = Instance.new("UIListLayout")
+local UICorner_List = Instance.new("UICorner")
+
+-- Floating Open Button (Saat di-minimize)
+local OpenButton = Instance.new("TextButton")
+local UICorner_Open = Instance.new("UICorner")
+
+--Properties:
+
+Gui.Name = "Gui"
+Gui.Parent = gethui()
+Gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Main.Name = "Main"
+Main.Parent = Gui
+Main.BackgroundColor3 = Color3.fromRGB(35, 10, 10) -- Tema Merah Gelap
+Main.BackgroundTransparency = 0.2 -- Transparan
+Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Main.BorderSizePixel = 0
+Main.Position = UDim2.new(0.335954279, 0, 0.542361975, 0)
+Main.Size = UDim2.new(0.240350261, 0, 0.38, 0)
+Main.Active = true
+Main.Draggable = true
+
+UICorner_Main.CornerRadius = UDim.new(0, 8)
+UICorner_Main.Parent = Main
+
+Label.Name = "Label"
+Label.Parent = Main
+Label.BackgroundColor3 = Color3.fromRGB(80, 15, 15)
+Label.BackgroundTransparency = 0.4
+Label.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Label.BorderSizePixel = 0
+Label.Size = UDim2.new(1, 0, 0.10, 0)
+Label.Font = Enum.Font.GothamBold
+Label.Text = "( RUSUH Bycipikturbo 🤟)"
+Label.TextColor3 = Color3.fromRGB(255, 255, 255)
+Label.TextScaled = true
+Label.TextSize = 14.000
+Label.TextWrapped = true
+
+MinimizeButton.Name = "MinimizeButton"
+MinimizeButton.Parent = Main
+MinimizeButton.BackgroundColor3 = Color3.fromRGB(120, 20, 20)
+MinimizeButton.Position = UDim2.new(0.88, 0, 0.005, 0)
+MinimizeButton.Size = UDim2.new(0.1, 0, 0.09, 0)
+MinimizeButton.Font = Enum.Font.GothamBold
+MinimizeButton.Text = "-"
+MinimizeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+MinimizeButton.TextScaled = true
+
+-- Tombol Toggle List Player
+ToggleListBtn.Name = "ToggleListBtn"
+ToggleListBtn.Parent = Main
+ToggleListBtn.BackgroundColor3 = Color3.fromRGB(100, 15, 15)
+ToggleListBtn.BackgroundTransparency = 0.3
+ToggleListBtn.Position = UDim2.new(0.05, 0, 0.12, 0)
+ToggleListBtn.Size = UDim2.new(0.9, 0, 0.07, 0)
+ToggleListBtn.Font = Enum.Font.GothamBold
+ToggleListBtn.Text = "📁 Toggle List Player"
+ToggleListBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+ToggleListBtn.TextScaled = true
+
+UICorner_Toggle.CornerRadius = UDim.new(0, 4)
+UICorner_Toggle.Parent = ToggleListBtn
+
+-- Player Scrolling List
+PlayerListFrame.Name = "PlayerListFrame"
+PlayerListFrame.Parent = Main
+PlayerListFrame.BackgroundColor3 = Color3.fromRGB(20, 5, 5)
+PlayerListFrame.BackgroundTransparency = 0.5
+PlayerListFrame.Position = UDim2.new(0.05, 0, 0.20, 0)
+PlayerListFrame.Size = UDim2.new(0.9, 0, 0.32, 0)
+PlayerListFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+PlayerListFrame.ScrollBarThickness = 6
+PlayerListFrame.Visible = false
+
+UICorner_List.CornerRadius = UDim.new(0, 6)
+UICorner_List.Parent = PlayerListFrame
+
+UIListLayout.Parent = PlayerListFrame
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout.Padding = UDim.new(0, 4)
+
+-- TextBox Target Input
+Box.Name = "Box"
+Box.Parent = Main
+Box.BackgroundColor3 = Color3.fromRGB(60, 10, 10)
+Box.BackgroundTransparency = 0.4
+Box.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Box.BorderSizePixel = 0
+Box.Position = UDim2.new(0.05, 0, 0.54, 0)
+Box.Size = UDim2.new(0.9, 0, 0.12, 0)
+Box.FontFace = Font.new("rbxasset://fonts/families/SourceSansSemibold.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
+Box.PlaceholderText = "Ketik Nama / Pilih dari List..."
+Box.Text = ""
+Box.TextColor3 = Color3.fromRGB(255, 255, 255)
+Box.TextScaled = true
+Box.TextSize = 18.000
+Box.TextWrapped = true
+
+UICorner_Box.CornerRadius = UDim.new(0, 6)
+UICorner_Box.Parent = Box
+
+Button.Name = "Button"
+Button.Parent = Main
+Button.BackgroundColor3 = Color3.fromRGB(150, 20, 20)
+Button.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Button.BorderSizePixel = 0
+Button.Position = UDim2.new(0.05, 0, 0.69, 0)
+Button.Size = UDim2.new(0.9, 0, 0.27, 0)
+Button.Font = Enum.Font.GothamBold
+Button.Text = "Bring | Off"
+Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+Button.TextScaled = true
+Button.TextSize = 22.000
+Button.TextWrapped = true
+
+UICorner_Btn.CornerRadius = UDim.new(0, 6)
+UICorner_Btn.Parent = Button
+
+-- Floating Button untuk Membuka Kembali UI saat di-minimize
+OpenButton.Name = "OpenButton"
+OpenButton.Parent = Gui
+OpenButton.BackgroundColor3 = Color3.fromRGB(150, 20, 20)
+OpenButton.BackgroundTransparency = 0.2
+OpenButton.Position = UDim2.new(0.02, 0, 0.5, 0)
+OpenButton.Size = UDim2.new(0, 45, 0, 45)
+OpenButton.Font = Enum.Font.GothamBold
+OpenButton.Text = "OPEN"
+OpenButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+OpenButton.TextScaled = true
+OpenButton.Visible = false
+
+UICorner_Open.CornerRadius = UDim.new(1, 0)
+UICorner_Open.Parent = OpenButton
+
+-- Srip Tombol OpenButton agar Bisa Digeser (Draggable) untuk Mobile & PC
+local UserInputService = game:GetService("UserInputService")
+local dragging, dragInput, dragStart, startPos
+
+OpenButton.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		dragging = true
+		dragStart = input.Position
+		startPos = OpenButton.Position
+		
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragging = false
+			end
+		end)
+	end
+end)
+
+OpenButton.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		dragInput = input
+	end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+	if input == dragInput and dragging then
+		local delta = input.Position - dragStart
+		OpenButton.Position = UDim2.new(
+			startPos.X.Scale, 
+			startPos.X.Offset + delta.X, 
+			startPos.Y.Scale, 
+			startPos.Y.Offset + delta.Y
+		)
+	end
+end)
+
+-- Scripts Asli & Tambahan Sistem:
+
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
+local Workspace = game:GetService("Workspace")
+
+local character
+local humanoidRootPart
+local player = nil
+
+-- Toggle UI menggunakan Right Control
+local mainStatus = true
+UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
+	if input.KeyCode == Enum.KeyCode.RightControl and not gameProcessedEvent then
+		mainStatus = not mainStatus
+		Main.Visible = mainStatus
+		OpenButton.Visible = not mainStatus
+	end
+end)
+
+-- Minimize & Open Logic
+MinimizeButton.MouseButton1Click:Connect(function()
+	Main.Visible = false
+	OpenButton.Visible = true
+end)
+
+OpenButton.MouseButton1Click:Connect(function()
+	Main.Visible = true
+	OpenButton.Visible = false
+end)
+
+-- Toggle Menu List Player Visibility
+ToggleListBtn.MouseButton1Click:Connect(function()
+	PlayerListFrame.Visible = not PlayerListFrame.Visible
+end)
+
+-- Fungsi Cari Player
+local function getPlayer(name)
+	local lowerName = string.lower(name)
+	for _, p in pairs(Players:GetPlayers()) do
+		local lowerPlayer = string.lower(p.Name)
+		if string.find(lowerPlayer, lowerName) then
+			return p
+		elseif string.find(string.lower(p.DisplayName), lowerName) then
+			return p
+		end
+	end
+end
+
+-- Auto Refresh & List Player dengan Gambar Avatar & Nama Sendiri
+local function updatePlayerList()
+	for _, child in pairs(PlayerListFrame:GetChildren()) do
+		if child:IsA("TextButton") then
+			child:Destroy()
+		end
+	end
+	
+	for _, p in pairs(Players:GetPlayers()) do
+		local pBtn = Instance.new("TextButton")
+		pBtn.Parent = PlayerListFrame
+		pBtn.Size = UDim2.new(1, 0, 0, 32)
+		pBtn.BackgroundColor3 = Color3.fromRGB(60, 10, 10)
+		pBtn.BackgroundTransparency = 0.4
+		pBtn.Font = Enum.Font.GothamSemibold
+		pBtn.Text = "       " .. p.Name -- Spasi untuk memberi ruang ikon avatar
+		pBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+		pBtn.TextSize = 14
+		pBtn.TextXAlignment = Enum.TextXAlignment.Left
+		
+		local corner = Instance.new("UICorner", pBtn)
+		corner.CornerRadius = UDim.new(0, 4)
+		
+		-- Memuat Avatar / Thumbnail Player
+		local icon = Instance.new("ImageLabel")
+		icon.Parent = pBtn
+		icon.BackgroundTransparency = 1
+		icon.Position = UDim2.new(0, 2, 0.1, 0)
+		icon.Size = UDim2.new(0, 26, 0, 26)
+		
+		pcall(function()
+			local content, isReady = Players:GetUserThumbnailAsync(p.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size42x42)
+			icon.Image = content
+		end)
+		
+		pBtn.MouseButton1Click:Connect(function()
+			player = p
+			Box.Text = p.Name
+			PlayerListFrame.Visible = false
+			print("Player selected from list:", p.Name)
+		end)
+	end
+	PlayerListFrame.CanvasSize = UDim2.new(0, 0, 0, UIListLayout.AbsoluteContentSize.Y)
+end
+
+Players.PlayerAdded:Connect(updatePlayerList)
+Players.PlayerRemoving:Connect(updatePlayerList)
+task.spawn(updatePlayerList)
+
+-- Script Asli TextBox Input Focus Lost
+Box.FocusLost:Connect(function(enterPressed)
+	if enterPressed then
+		player = getPlayer(Box.Text)
+		if player then
+			Box.Text = player.Name
+			print("Player found:", player.Name)
+		else
+			print("Player not found")
+		end
+	end
+end)
+
+local Folder = Instance.new("Folder", Workspace)
+local Part = Instance.new("Part", Folder)
+local Attachment1 = Instance.new("Attachment", Part)
+Part.Anchored = true
+Part.CanCollide = false
+Part.Transparency = 1
+
+if not getgenv().Network then
+	getgenv().Network = {
+		BaseParts = {},
+		Velocity = Vector3.new(14.46262424, 14.46262424, 14.46262424)
+	}
+
+	Network.RetainPart = function(Part)
+		if Part:IsA("BasePart") and Part:IsDescendantOf(Workspace) then
+			table.insert(Network.BaseParts, Part)
+			Part.CustomPhysicalProperties = PhysicalProperties.new(0, 0, 0, 0, 0)
+			Part.CanCollide = false
+		end
+	end
+
+	local function EnablePartControl()
+		LocalPlayer.ReplicationFocus = Workspace
+		RunService.Heartbeat:Connect(function()
+			sethiddenproperty(LocalPlayer, "SimulationRadius", math.huge)
+			for _, Part in pairs(Network.BaseParts) do
+				if Part:IsDescendantOf(Workspace) then
+					Part.Velocity = Network.Velocity
+				end
+			end
+		end)
+	end
+
+	EnablePartControl()
+end
+
+local function ForcePart(v)
+	if v:IsA("BasePart") and not v.Anchored and not v.Parent:FindFirstChildOfClass("Humanoid") and not v.Parent:FindFirstChild("Head") and v.Name ~= "Handle" then
+		for _, x in ipairs(v:GetChildren()) do
+			if x:IsA("BodyMover") or x:IsA("RocketPropulsion") then
+				x:Destroy()
+			end
+		end
+		if v:FindFirstChild("Attachment") then
+			v:FindFirstChild("Attachment"):Destroy()
+		end
+		if v:FindFirstChild("AlignPosition") then
+			v:FindFirstChild("AlignPosition"):Destroy()
+		end
+		if v:FindFirstChild("Torque") then
+			v:FindFirstChild("Torque"):Destroy()
+		end
+		v.CanCollide = false
+		local Torque = Instance.new("Torque", v)
+		Torque.Torque = Vector3.new(100000, 100000, 100000)
+		local AlignPosition = Instance.new("AlignPosition", v)
+		local Attachment2 = Instance.new("Attachment", v)
+		Torque.Attachment0 = Attachment2
+		AlignPosition.MaxForce = math.huge
+		AlignPosition.MaxVelocity = math.huge
+		AlignPosition.Responsiveness = 200
+		AlignPosition.Attachment0 = Attachment2
+		AlignPosition.Attachment1 = Attachment1
+	end
+end
+
+local blackHoleActive = false
+local DescendantAddedConnection
+
+local function toggleBlackHole()
+	blackHoleActive = not blackHoleActive
+	if blackHoleActive then
+		Button.Text = "Bring Parts | On"
+		for _, v in ipairs(Workspace:GetDescendants()) do
+			ForcePart(v)
+		end
+
+		DescendantAddedConnection = Workspace.DescendantAdded:Connect(function(v)
+			if blackHoleActive then
+				ForcePart(v)
+			end
+		end)
+
+		spawn(function()
+			while blackHoleActive and RunService.RenderStepped:Wait() do
+				Attachment1.WorldCFrame = humanoidRootPart.CFrame
+			end
+		end)
+	else
+		Button.Text = "Bring Parts | Off"
+		if DescendantAddedConnection then
+			DescendantAddedConnection:Disconnect()
+		end
+	end
+end
+
+-- Script Asli Tombol Eksekusi
+Button.MouseButton1Click:Connect(function()
+	if Box.Text ~= "" and (not player or player.Name ~= Box.Text) then
+		player = getPlayer(Box.Text)
+	end
+	
+	if player then
+		character = player.Character or player.CharacterAdded:Wait()
+		humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+		toggleBlackHole()
+	else
+		print("Player is not selected")
+	end
+end)
